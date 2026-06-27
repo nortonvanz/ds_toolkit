@@ -1,6 +1,6 @@
 [build-system]
 requires = ["setuptools>=61.0"]
-build-backend = "setuptools.backends.legacy:build"
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "ds_toolkit"
@@ -16,3 +16,6 @@ dependencies = [
     "scikit-learn",
     "inflection",
 ]
+
+
+
