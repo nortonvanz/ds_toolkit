@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "ds_toolkit"
+version = "0.1.0"
+description = "Personal data science utility toolkit"
+requires-python = ">=3.9"
+dependencies = [
+    "pandas",
+    "numpy",
+    "matplotlib",
+    "seaborn",
+    "scipy",
+    "scikit-learn",
+    "inflection",
+]
