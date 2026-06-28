@@ -1,4 +1,10 @@
 
+import numpy as np
+import pandas as pd
+import seaborn as sns
+from matplotlib import pyplot as plt
+from matplotlib.ticker import ScalarFormatter
+
 
 def statistics(data):
     """Calculate comprehensive descriptive statistics for numerical data.
