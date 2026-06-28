@@ -9,10 +9,10 @@ description = "Personal data science utility toolkit"
 requires-python = ">=3.9"
 dependencies = [
     "pandas",
-    "numpy>=1.24,<2.2",
+    "numpy>=1.24,<2.0",
     "matplotlib",
     "seaborn",
-    "scipy",
+    "scipy>=1.9,<1.16",
     "scikit-learn",
     "inflection",
 ]
