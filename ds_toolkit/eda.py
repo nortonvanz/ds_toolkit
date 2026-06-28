@@ -1,5 +1,98 @@
 
 
+def statistics(data):
+    """Calculate comprehensive descriptive statistics for numerical data.
+    
+    Computes various statistical metrics including central tendency, dispersion, and distribution shape for all numeric columns in the input DataFrame.
+    
+    Parameters
+    ----------
+    data : pandas.DataFrame
+        Input DataFrame containing numerical columns
+        
+    Returns
+    -------
+    pandas.DataFrame
+        DataFrame with the following statistics for each numeric column:
+        - non-null : int
+            Count of non-null values
+        - range : float
+            Difference between maximum and minimum values
+        - min : float
+            Minimum value
+        - quant25 : float
+            First quartile (25th percentile)
+        - median : float
+            Median (50th percentile)
+        - quant75 : float
+            Third quartile (75th percentile)
+        - max : float
+            Maximum value
+        - mean : float
+            Arithmetic mean
+        - std : float
+            Standard deviation
+        - skew : float
+            Skewness (measure of distribution asymmetry)
+        - kurtosis : float
+            Kurtosis (measure of distribution tailedness)
+            
+    Notes
+    -----
+    - All metrics are rounded to 1 decimal place
+    - Only columns with int or float datatypes are analyzed
+    - NaN values are automatically excluded from calculations
+    
+    Examples
+    --------
+    >>> df = pd.DataFrame({
+    ...     'A': [1, 2, 3, 4, 5],
+    ...     'B': [2.5, 3.5, 4.5, 5.5, 6.5],
+    ...     'C': ['a', 'b', 'c', 'd', 'e']
+    ... })
+    >>> stats = statistics(df)
+    >>> print(stats.columns)
+    Index(['non-null', 'range', 'min', 'quant25', 'median', 'quant75', 'max', 'mean', 'std', 'skew', 'kurtosis'], dtype='object')
+    """
+    # Select only numeric columns
+    num_data = data.select_dtypes(include=['int', 'float'])
+
+    # Central Tendency
+    mean = num_data.apply(np.mean)
+
+    # Quantiles
+    q25 = num_data.quantile(0.25)
+    q50 = num_data.quantile(0.5)
+    q75 = num_data.quantile(0.75)
+    range_ = num_data.apply(lambda x: x.max() - x.min())
+    count = num_data.count()
+
+    # Dispersion
+    min_ = num_data.apply(min)
+    max_ = num_data.apply(max)
+    std = num_data.apply(np.std)
+
+    # Distribution Shape
+    skew = num_data.apply(lambda x: x.skew())
+    kurtosis = num_data.apply(lambda x: x.kurtosis())
+
+    metrics = pd.DataFrame({
+        'non-null': count,
+        'range': range_,
+        'min': min_,
+        'quant25': q25,
+        'median': q50,
+        'quant75': q75,
+        'max': max_,
+        'mean': mean,
+        'std': std,
+        'skew': skew,
+        'kurtosis': kurtosis
+    })
+    
+    return np.round(metrics, 1)
+
+
 def inspect_outliers(df, numeric_columns):
     """Visualize and analyze outliers in numeric features using box plots and IQR method.
     
