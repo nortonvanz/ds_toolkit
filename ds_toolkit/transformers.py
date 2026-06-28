@@ -1,3 +1,7 @@
+import inflection
+from sklearn.base import BaseEstimator, TransformerMixin
+
+
 class RenameDfColumns(BaseEstimator, TransformerMixin):
     """Transform DataFrame column names to snake_case format.
     
