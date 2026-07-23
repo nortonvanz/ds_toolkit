@@ -1,10 +1,2 @@
-from .eda import statistics, inspect_outliers
+from .eda import inspect_outliers, statistics, plot_target_distribution, plot_numerical_distributions, plot_categorical_distributions, plot_numerical_correlations, plot_categorical_correlations, test_statistical_significance, plot_comprehensive_target_distribution
 from .transformers import RenameDfColumns, FilterFeatures
-# from .visualization import (
-#     plot_target_distribution,
-#     plot_numerical_distributions,
-#     plot_categorical_distributions,
-#     plot_pearson_correlation,
-#     plot_categorical_correlations,
-#     plot_comprehensive_target_distribution,
-# )
